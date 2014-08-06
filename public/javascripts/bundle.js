@@ -25,10 +25,19 @@ circleSegmentContainer.scale.y = 100
 scene.add(circleSegmentContainer);
 
 
+
 var circleSegment1 = new CircleSegment()
-circleSegmentContainer.add(circleSegment1.mesh );
+circleSegmentContainer.add(circleSegment1.mesh);
 
+var circleSegment2 = new CircleSegment()
+circleSegmentContainer.add(circleSegment2.mesh);
+circleSegment2.mesh.scale.x = 2
+circleSegment2.mesh.scale.y = 2
 
+var circleSegment3 = new CircleSegment()
+circleSegmentContainer.add(circleSegment3.mesh);
+circleSegment3.mesh.scale.x = 4
+circleSegment3.mesh.scale.y = 4
 
 
 console.log("circleSegment1.mesh: ", circleSegment1.mesh.scale.x)
@@ -57,7 +66,9 @@ function animate() {
   var dt = now - lastUpdate;
   lastUpdate = now;
 
-  circleSegment1.mesh.rotation.z += 0.02;
+  circleSegment1.mesh.rotation.z += 0.01;
+  circleSegment2.mesh.rotation.z += -0.007;
+  circleSegment3.mesh.rotation.z += -0.002;
 
   renderer.render( scene, camera );
   
@@ -35928,34 +35939,36 @@ THREE.ShaderFlares = {
 var THREE = require('../libs/three/three')
 
 
-var testMaterial = new THREE.ShaderMaterial( {
+var createMaterial = function() {
+  return new THREE.ShaderMaterial({
 
-  uniforms: {
-    time: { type: "f", value: 1.0 },
-    resolution: { type: "v2", value: new THREE.Vector2() },
-    color: [1, 0.5, 0.5, 1]
-  },
-  attributes: {
-    aAlpha: {
-      type: 'f',
-      value: [1,0.5,0]
-    }
-  },
-  vertexShader: 
-  'attribute float aAlpha; \
-  varying float vAlpha; \
-  void main() { \
-    vAlpha = aAlpha; \
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 ); \
-  }',
-  fragmentShader: 
-  'precision highp float; \
-  varying float vAlpha; \
-  void main(void) { \
-    gl_FragColor = vec4(1.0, 1.0, 0.2, 1.0); \
-  }'
+    uniforms: {
+      time: { type: "f", value: 1.0 },
+      resolution: { type: "v2", value: new THREE.Vector2() },
+      color: [1, 0.5, 0.5, 1]
+    },
+    attributes: {
+      aAlpha: {
+        type: 'f',
+        value: [1,0.5,0]
+      }
+    },
+    vertexShader: 
+    'attribute float aAlpha; \
+    varying float vAlpha; \
+    void main() { \
+      vAlpha = aAlpha; \
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 ); \
+    }',
+    fragmentShader: 
+    'precision highp float; \
+    varying float vAlpha; \
+    void main(void) { \
+      gl_FragColor = vec4(1.0, 1.0, 0.2, 1.0); \
+    }'
 
-} );
+  });
+}
 
 
 function CircleSegment() {
@@ -35963,7 +35976,7 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   // Half number of total vertices
-  var verticesPerRound = 10
+  var verticesPerRound = 14
 
   var innerRadius = 0.7
   var outerRadius = 1
@@ -36010,7 +36023,7 @@ function CircleSegment() {
 
   var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
-  var mesh = new THREE.Mesh( geometry, testMaterial );
+  var mesh = new THREE.Mesh( geometry, createMaterial() );
 
 
   this.mesh = mesh;

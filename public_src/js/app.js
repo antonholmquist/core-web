@@ -24,10 +24,19 @@ circleSegmentContainer.scale.y = 100
 scene.add(circleSegmentContainer);
 
 
+
 var circleSegment1 = new CircleSegment()
-circleSegmentContainer.add(circleSegment1.mesh );
+circleSegmentContainer.add(circleSegment1.mesh);
 
+var circleSegment2 = new CircleSegment()
+circleSegmentContainer.add(circleSegment2.mesh);
+circleSegment2.mesh.scale.x = 2
+circleSegment2.mesh.scale.y = 2
 
+var circleSegment3 = new CircleSegment()
+circleSegmentContainer.add(circleSegment3.mesh);
+circleSegment3.mesh.scale.x = 4
+circleSegment3.mesh.scale.y = 4
 
 
 console.log("circleSegment1.mesh: ", circleSegment1.mesh.scale.x)
@@ -56,7 +65,9 @@ function animate() {
   var dt = now - lastUpdate;
   lastUpdate = now;
 
-  circleSegment1.mesh.rotation.z += 0.02;
+  circleSegment1.mesh.rotation.z += 0.01;
+  circleSegment2.mesh.rotation.z += -0.007;
+  circleSegment3.mesh.rotation.z += -0.002;
 
   renderer.render( scene, camera );
   
