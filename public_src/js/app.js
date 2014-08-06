@@ -11,7 +11,7 @@ var renderer = new PIXI.WebGLRenderer(800, 600, null, false, true);
 
 document.body.appendChild(renderer.view);
 
-var stage = new PIXI.Stage;
+var stage = new PIXI.Stage(0x000000);
 
 
 var circleSegmentContainer = new PIXI.Graphics();
@@ -44,6 +44,7 @@ function animate() {
 
   renderer.render(stage);
 
+  //circleSegment1.graphics.rotation = 0.1
 
   circleSegment1.graphics.rotation += 0.001
 
