@@ -13,46 +13,14 @@ document.body.appendChild(renderer.view);
 
 var stage = new PIXI.Stage;
 
-/*
-var bunnyTexture = PIXI.Texture.fromImage("bunny.png");
-var bunny = new PIXI.Sprite(bunnyTexture);
-
-bunny.position.x = 400;
-bunny.position.y = 300;
-
-bunny.scale.x = 2;
-bunny.scale.y = 2;
-
-stage.addChild(bunny);
-*/
-
-{
-  
-  var graphics = new PIXI.Graphics();
 
 
-    // begin a green fill..
-  graphics.beginFill(0x00ff00);
-   
-  // draw a triangle using lines
-  graphics.moveTo(0,0);
+var circleSegment1 = new CircleSegment()
+stage.addChild(circleSegment1.graphics)
 
-  graphics.lineTo(50, 100);
-  graphics.lineTo(-50, 100);
-  graphics.lineTo(0,0);
-   
-  // end the fill
-  graphics.endFill();
-
-  graphics.position.x = 50
-  
-
-
-  // add it the stage so we see it on our screens.. 
-  stage.addChild(graphics);  
-
-}
-
+var circleSegment2 = new CircleSegment()
+circleSegment2.graphics.x = 200
+stage.addChild(circleSegment2.graphics)
 
 
 requestAnimationFrame(animate);
@@ -64,6 +32,8 @@ requestAnimationFrame(animate);
 function animate() {
 
   renderer.render(stage);
+
+  circleSegment2.graphics.x += 1
 
   requestAnimationFrame(animate);
 }
