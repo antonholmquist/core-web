@@ -1,5 +1,6 @@
 
 var PIXI = require('./libs/pixi/pixi')
+var THREE = require('./libs/three/three')
 
 var CircleSegment = require('./objects/CircleSegment')
 
@@ -10,27 +11,26 @@ var width = window.innerWidth;
 var height = window.innerHeight;
 
 // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer (or autoDetectRenderer)
-var renderer = new PIXI.WebGLRenderer(width, height, null, false, true);
 
-renderer.view.style.width = width + "px";
-renderer.view.style.height = height + "px";
-renderer.view.style.display = "block";
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000 );
+camera.position.z = 1000;
+
+var geometry = new THREE.BoxGeometry( 200, 200, 200 );
+var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+
+var mesh = new THREE.Mesh( geometry, material );
+scene.add( mesh );
+
+
+var renderer = new THREE.CanvasRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+
+document.body.appendChild(renderer.domElement);
+
 
 /*
-window.onresize = function(event) {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-  renderer.view.style.width = width + "px";
-  renderer.view.style.height = height + "px";
-  renderer.width = width;
-  renderer.height = height;
-};*/
-
-document.body.appendChild(renderer.view);
-
-var stage = new PIXI.Stage(0x00426b);
-
-
 var circleSegmentContainer = new PIXI.Graphics();
 circleSegmentContainer.scale.x = 100
 circleSegmentContainer.scale.y = 100
@@ -43,6 +43,7 @@ circleSegmentContainer.addChild(circleSegment1.graphics)
 
 console.log("get local: " + JSON.stringify(circleSegment1.graphics.getLocalBounds()))
 console.log("get pivot: " + JSON.stringify(circleSegment1.graphics.pivot))
+*/
 
 /*
 var circleSegment2 = new CircleSegment()
@@ -59,14 +60,15 @@ var lastUpdate = Date.now();
 // Animation loop
 function animate() {
 
+  requestAnimationFrame(animate);
+
   var now = Date.now();
   var dt = now - lastUpdate;
   lastUpdate = now;
 
-  renderer.render(stage);
+  mesh.rotation.x += 0.01;
+  mesh.rotation.y += 0.02;
 
-  circleSegment1.graphics.rotation += dt * 0.0004
-
-
-  requestAnimationFrame(animate);
+  renderer.render( scene, camera );
+  
 }
