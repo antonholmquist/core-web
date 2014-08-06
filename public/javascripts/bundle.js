@@ -1,14 +1,41 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
-var PIXI = require('./pixi/pixi')
+var PIXI = require('./libs/pixi/pixi')
 
 console.log("pixi: ", PIXI)
 
 console.log("woo222 atnon 2  aaa")
    
 
+// You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
+var renderer = new PIXI.WebGLRenderer(800, 600);
 
-},{"./pixi/pixi":2}],2:[function(require,module,exports){
+document.body.appendChild(renderer.view);
+
+var stage = new PIXI.Stage;
+
+var bunnyTexture = PIXI.Texture.fromImage("bunny.png");
+var bunny = new PIXI.Sprite(bunnyTexture);
+
+bunny.position.x = 400;
+bunny.position.y = 300;
+
+bunny.scale.x = 2;
+bunny.scale.y = 2;
+
+stage.addChild(bunny);
+
+requestAnimationFrame(animate);
+
+// Animation loop
+function animate() {
+
+
+    renderer.render(stage);
+
+    requestAnimationFrame(animate);
+}
+},{"./libs/pixi/pixi":2}],2:[function(require,module,exports){
 /**
  * @license
  * pixi.js - v1.6.0
