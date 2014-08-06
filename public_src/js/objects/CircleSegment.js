@@ -1,12 +1,30 @@
-var PIXI = require('../libs/pixi/pixi')
+var THREE = require('../libs/three/three')
 
 function CircleSegment() {
   //this.a = x;
 
-  // Create graphics objects
-  this.graphics = new PIXI.Graphics();
+  var geometry = new THREE.Geometry();
 
-  this.updateGraphics();
+  geometry.vertices.push(
+    new THREE.Vector3( -10,  10, 0 ),
+    new THREE.Vector3( -10, -10, 0 ),
+    new THREE.Vector3(  10, -10, 0 )
+  );
+
+  geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+
+  geometry.computeBoundingBox();
+
+  
+
+  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+  var mesh = new THREE.Mesh( geometry, material );
+
+
+  this.mesh = mesh;
+
+  //this.updateGraphics();
 };
 
 
@@ -18,20 +36,7 @@ CircleSegment.prototype.move = function() {
 // Update the graphics object
 CircleSegment.prototype.updateGraphics = function() {
 
-  var graphics = this.graphics;
-  
-    // begin a green fill..
-  graphics.beginFill(0xffffff);
-   
-  // draw a triangle using lines
-  graphics.moveTo(-1, 1);
 
-  graphics.lineTo(1, 1);
-  graphics.lineTo(1, -1);
-  graphics.lineTo(-1,-1);
-   
-  // end the fill
-  graphics.endFill();
 
 };
 

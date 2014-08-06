@@ -24,6 +24,9 @@ var mesh = new THREE.Mesh( geometry, material );
 scene.add( mesh );
 
 
+var circleSegment1 = new CircleSegment()
+scene.add(circleSegment1.mesh );
+
 var renderer = new THREE.CanvasRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 
