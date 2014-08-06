@@ -1,10 +1,10 @@
 
 var PIXI = require('./libs/pixi/pixi')
 
-console.log("pixi: ", PIXI)
+var CircleSegment = require('./objects/CircleSegment')
 
-console.log("woo222 atnon 2  aaa")
-   
+var instance = new CircleSegment(10)
+
 
 // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
 var renderer = new PIXI.WebGLRenderer(800, 600);
@@ -43,6 +43,8 @@ stage.addChild(bunny);
    
   // end the fill
   graphics.endFill();
+
+  graphics.position.x = 50
   
 
 
