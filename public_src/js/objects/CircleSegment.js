@@ -21,10 +21,10 @@ CircleSegment.prototype.updateGraphics = function() {
   var graphics = this.graphics;
   
     // begin a green fill..
-  graphics.beginFill(0x00ff00);
+  graphics.beginFill(0xffffff);
    
   // draw a triangle using lines
-  graphics.moveTo(-1,1);
+  graphics.moveTo(-1, 1);
 
   graphics.lineTo(1, 1);
   graphics.lineTo(1, -1);

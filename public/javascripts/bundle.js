@@ -29,7 +29,7 @@ window.onresize = function(event) {
 
 document.body.appendChild(renderer.view);
 
-var stage = new PIXI.Stage(0x000000);
+var stage = new PIXI.Stage(0x00426b);
 
 
 var circleSegmentContainer = new PIXI.Graphics();
@@ -66,7 +66,7 @@ function animate() {
 
   renderer.render(stage);
 
-  circleSegment1.graphics.rotation += dt * 0.001
+  circleSegment1.graphics.rotation += dt * 0.0004
 
 
   requestAnimationFrame(animate);
@@ -113,10 +113,10 @@ CircleSegment.prototype.updateGraphics = function() {
   var graphics = this.graphics;
   
     // begin a green fill..
-  graphics.beginFill(0x00ff00);
+  graphics.beginFill(0xffffff);
    
   // draw a triangle using lines
-  graphics.moveTo(-1,1);
+  graphics.moveTo(-1, 1);
 
   graphics.lineTo(1, 1);
   graphics.lineTo(1, -1);

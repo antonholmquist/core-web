@@ -28,7 +28,7 @@ window.onresize = function(event) {
 
 document.body.appendChild(renderer.view);
 
-var stage = new PIXI.Stage(0x000000);
+var stage = new PIXI.Stage(0x00426b);
 
 
 var circleSegmentContainer = new PIXI.Graphics();
@@ -65,7 +65,7 @@ function animate() {
 
   renderer.render(stage);
 
-  circleSegment1.graphics.rotation += dt * 0.001
+  circleSegment1.graphics.rotation += dt * 0.0004
 
 
   requestAnimationFrame(animate);
