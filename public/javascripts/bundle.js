@@ -35965,7 +35965,7 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   // Half number of total vertices
-  var verticesPerRound = 100
+  var verticesPerRound = 10
 
   var innerRadius = 0.7
   var outerRadius = 1
