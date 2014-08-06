@@ -18,23 +18,20 @@ CircleSegment.prototype.move = function() {
 // Update the graphics object
 CircleSegment.prototype.updateGraphics = function() {
 
-
-
   var graphics = this.graphics;
   
     // begin a green fill..
   graphics.beginFill(0x00ff00);
    
   // draw a triangle using lines
-  graphics.moveTo(0,0);
+  graphics.moveTo(-1,1);
 
-  graphics.lineTo(50, 100);
-  graphics.lineTo(-50, 100);
-  graphics.lineTo(0,0);
+  graphics.lineTo(1, 1);
+  graphics.lineTo(1, -1);
+  graphics.lineTo(-1,-1);
    
   // end the fill
   graphics.endFill();
-
 
 };
 
