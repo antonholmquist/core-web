@@ -6,8 +6,8 @@ var CircleSegment = require('./objects/CircleSegment')
 var instance = new CircleSegment(10)
 
 
-// You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer
-var renderer = new PIXI.WebGLRenderer(800, 600);
+// You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer (or autoDetectRenderer)
+var renderer = new PIXI.WebGLRenderer(800, 600, null, false, true);
 
 document.body.appendChild(renderer.view);
 
