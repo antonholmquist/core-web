@@ -26,7 +26,7 @@ var testMaterial = new THREE.ShaderMaterial( {
   'precision highp float; \
   varying float vAlpha; \
   void main(void) { \
-    gl_FragColor = vec4(vAlpha, 1.0, 0.2, 1.0); \
+    gl_FragColor = vec4(1.0, 1.0, 0.2, 1.0); \
   }'
 
 } );
@@ -37,6 +37,43 @@ function CircleSegment() {
 
   var geometry = new THREE.Geometry();
 
+  // Half number of total vertices
+  var verticesPerRound = 10
+
+
+  for (var i = 0; i < verticesPerRound; i++) {
+
+     var inner = new THREE.Vector3( -1,  1 + i * 0.2, 0 )
+     var outer = new THREE.Vector3( 1,  1 + i * 0.2, 0 )
+
+     geometry.vertices.push(inner) // i * 2 + 0
+     geometry.vertices.push(outer) // i * 2 + 1
+
+     if (i > 0) {
+      //var previousInner = geometry.vertices[i * 2 - 2]
+      //var previousOuter = geometry.vertices[i * 2 - 1]
+
+
+      geometry.faces.push(new THREE.Face3(
+        i * 2 + 0,
+        i * 2 - 2,
+        i * 2 - 1
+        
+      ));
+
+      geometry.faces.push(new THREE.Face3(
+        i * 2 + 1,
+        i * 2 - 0, 
+        i * 2 - 1
+      ));
+
+ 
+     }
+
+     
+  }
+
+  /*
   geometry.vertices.push(
     new THREE.Vector3( -1,  1, 0 ),
     new THREE.Vector3( -1, -1, 0 ),
@@ -44,6 +81,7 @@ function CircleSegment() {
   );
 
   geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+  */
 
   geometry.computeBoundingBox();
 
