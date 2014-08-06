@@ -40,16 +40,30 @@ function CircleSegment() {
   // Half number of total vertices
   var verticesPerRound = 10
 
+  var innerRadius = 0.7
+  var outerRadius = 1
+
 
   for (var i = 0; i < verticesPerRound; i++) {
 
-     var inner = new THREE.Vector3( -1,  1 + i * 0.2, 0 )
-     var outer = new THREE.Vector3( 1,  1 + i * 0.2, 0 )
+    var angle = 2 * Math.PI * i / (verticesPerRound - 1)
 
-     geometry.vertices.push(inner) // i * 2 + 0
-     geometry.vertices.push(outer) // i * 2 + 1
+    var inner = new THREE.Vector3(
+      Math.cos(angle) * innerRadius,
+      Math.sin(angle) * innerRadius,
+      0
+    );
 
-     if (i > 0) {
+    var outer = new THREE.Vector3(
+      Math.cos(angle) * outerRadius,
+      Math.sin(angle) * outerRadius,
+      0
+    );
+
+    geometry.vertices.push(inner) // i * 2 + 0
+    geometry.vertices.push(outer) // i * 2 + 1
+
+    if (i > 0) {
       //var previousInner = geometry.vertices[i * 2 - 2]
       //var previousOuter = geometry.vertices[i * 2 - 1]
 
@@ -58,7 +72,6 @@ function CircleSegment() {
         i * 2 + 0,
         i * 2 - 2,
         i * 2 - 1
-        
       ));
 
       geometry.faces.push(new THREE.Face3(
@@ -67,8 +80,7 @@ function CircleSegment() {
         i * 2 - 1
       ));
 
- 
-     }
+    }
 
      
   }
