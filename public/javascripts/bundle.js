@@ -35954,14 +35954,24 @@ var testMaterial = new THREE.ShaderMaterial( {
     resolution: { type: "v2", value: new THREE.Vector2() },
     color: [1, 0.5, 0.5, 1]
   },
+  attributes: {
+    aAlpha: {
+      type: 'f',
+      value: [1,0.5,0]
+    }
+  },
   vertexShader: 
-  'void main() { \
+  'attribute float aAlpha; \
+  varying float vAlpha; \
+  void main() { \
+    vAlpha = aAlpha; \
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 2.0 ); \
   }',
   fragmentShader: 
   'precision highp float; \
+  varying float vAlpha; \
   void main(void) { \
-    gl_FragColor = vec4(0, 1.0, 0.2, 1.0); \
+    gl_FragColor = vec4(vAlpha, 1.0, 0.2, 1.0); \
   }'
 
 } );
@@ -35973,9 +35983,9 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   geometry.vertices.push(
-    new THREE.Vector3( -80,  80, 0 ),
-    new THREE.Vector3( -80, -80, 0 ),
-    new THREE.Vector3(  80, -80, 0 )
+    new THREE.Vector3( -380,  380, 0 ),
+    new THREE.Vector3( -380, -380, 0 ),
+    new THREE.Vector3(  380, -380, 0 )
   );
 
   geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
