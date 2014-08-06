@@ -1,7 +1,7 @@
 
 .DS_Store
 npm-debug.log
-bin
+.bin
 
 /node_modules/browserify
 /node_modules/grunt
