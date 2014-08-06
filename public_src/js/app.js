@@ -6,8 +6,25 @@ var CircleSegment = require('./objects/CircleSegment')
 var instance = new CircleSegment(10)
 
 
+var width = window.innerWidth;
+var height = window.innerHeight;
+
 // You can use either PIXI.WebGLRenderer or PIXI.CanvasRenderer (or autoDetectRenderer)
-var renderer = new PIXI.WebGLRenderer(800, 600, null, false, true);
+var renderer = new PIXI.WebGLRenderer(width, height, null, false, true);
+
+renderer.view.style.width = width + "px";
+renderer.view.style.height = height + "px";
+renderer.view.style.display = "block";
+
+/*
+window.onresize = function(event) {
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  renderer.view.style.width = width + "px";
+  renderer.view.style.height = height + "px";
+  renderer.width = width;
+  renderer.height = height;
+};*/
 
 document.body.appendChild(renderer.view);
 
@@ -17,8 +34,8 @@ var stage = new PIXI.Stage(0x000000);
 var circleSegmentContainer = new PIXI.Graphics();
 circleSegmentContainer.scale.x = 100
 circleSegmentContainer.scale.y = 100
-circleSegmentContainer.position.x = 400
-circleSegmentContainer.position.y = 300
+circleSegmentContainer.position.x = width * 0.5
+circleSegmentContainer.position.y = height * 0.46
 stage.addChild(circleSegmentContainer)
 
 var circleSegment1 = new CircleSegment()
@@ -36,19 +53,20 @@ stage.addChild(circleSegment2.graphics)
 
 requestAnimationFrame(animate);
 
-
+var lastUpdate = Date.now();
 
 
 // Animation loop
 function animate() {
 
+  var now = Date.now();
+  var dt = now - lastUpdate;
+  lastUpdate = now;
+
   renderer.render(stage);
 
-  //circleSegment1.graphics.rotation = 0.1
+  circleSegment1.graphics.rotation += dt * 0.001
 
-  circleSegment1.graphics.rotation += 0.001
-
-  //circleSegment2.graphics.x += 1
 
   requestAnimationFrame(animate);
 }
