@@ -4,9 +4,10 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     express: {
-      server: {
+      dev: {
         options: {
-          server: 'app.js'
+          server: 'app.js',
+          serverreload: true
         }
       }
     }
@@ -14,6 +15,6 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-express');
 
-  grunt.registerTask('default', ['express:server', 'express-keepalive']);
+  grunt.registerTask('default', ['express:dev', 'express-keepalive']);
 
-}
+} 
