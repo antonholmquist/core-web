@@ -27,7 +27,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-express');
   grunt.loadNpmTasks('grunt-browserify');
 
-  grunt.registerTask('default', ['express:dev', 'express-keepalive']);
+  grunt.registerTask('default', ['browserify:bundle', 'express:dev', 'express-keepalive']);
 
 
 } 
