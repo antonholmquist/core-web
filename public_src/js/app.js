@@ -27,7 +27,11 @@ scene.add( mesh );
 var circleSegment1 = new CircleSegment()
 scene.add(circleSegment1.mesh );
 
-var renderer = new THREE.CanvasRenderer();
+var renderer = new THREE.WebGLRenderer({
+    antialias:true,
+    alpha: false
+});
+
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild(renderer.domElement);
