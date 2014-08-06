@@ -56,7 +56,7 @@ function animate() {
   var dt = now - lastUpdate;
   lastUpdate = now;
 
-  //circleSegment1.mesh.rotation.z += 0.02;
+  circleSegment1.mesh.rotation.z += 0.02;
 
   renderer.render( scene, camera );
   

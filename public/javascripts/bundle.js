@@ -57,7 +57,7 @@ function animate() {
   var dt = now - lastUpdate;
   lastUpdate = now;
 
-  //circleSegment1.mesh.rotation.z += 0.02;
+  circleSegment1.mesh.rotation.z += 0.02;
 
   renderer.render( scene, camera );
   
@@ -35928,7 +35928,6 @@ THREE.ShaderFlares = {
 var THREE = require('../libs/three/three')
 
 
-
 var testMaterial = new THREE.ShaderMaterial( {
 
   uniforms: {
@@ -35960,7 +35959,6 @@ var testMaterial = new THREE.ShaderMaterial( {
 
 
 function CircleSegment() {
-  //this.a = x;
 
   var geometry = new THREE.Geometry();
 
@@ -35991,9 +35989,6 @@ function CircleSegment() {
     geometry.vertices.push(outer) // i * 2 + 1
 
     if (i > 0) {
-      //var previousInner = geometry.vertices[i * 2 - 2]
-      //var previousOuter = geometry.vertices[i * 2 - 1]
-
 
       geometry.faces.push(new THREE.Face3(
         i * 2 + 0,
@@ -36009,22 +36004,9 @@ function CircleSegment() {
 
     }
 
-     
   }
 
-  /*
-  geometry.vertices.push(
-    new THREE.Vector3( -1,  1, 0 ),
-    new THREE.Vector3( -1, -1, 0 ),
-    new THREE.Vector3(  1, -1, 0 )
-  );
-
-  geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-  */
-
   geometry.computeBoundingBox();
-
-  
 
   var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
@@ -36033,7 +36015,6 @@ function CircleSegment() {
 
   this.mesh = mesh;
 
-  //this.updateGraphics();
 };
 
 
