@@ -20,7 +20,7 @@ var testMaterial = new THREE.ShaderMaterial( {
   varying float vAlpha; \
   void main() { \
     vAlpha = aAlpha; \
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 2.0 ); \
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0 ); \
   }',
   fragmentShader: 
   'precision highp float; \
@@ -38,9 +38,9 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   geometry.vertices.push(
-    new THREE.Vector3( -380,  380, 0 ),
-    new THREE.Vector3( -380, -380, 0 ),
-    new THREE.Vector3(  380, -380, 0 )
+    new THREE.Vector3( -1,  1, 0 ),
+    new THREE.Vector3( -1, -1, 0 ),
+    new THREE.Vector3(  1, -1, 0 )
   );
 
   geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );

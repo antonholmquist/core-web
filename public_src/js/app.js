@@ -16,8 +16,22 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 10000 );
 camera.position.z = 1000;
 
+
+var circleSegmentContainer = new THREE.Object3D()
+circleSegmentContainer.scale.x = 100
+circleSegmentContainer.scale.y = 100
+
+scene.add(circleSegmentContainer);
+
+
 var circleSegment1 = new CircleSegment()
-scene.add(circleSegment1.mesh );
+circleSegmentContainer.add(circleSegment1.mesh );
+
+
+
+
+console.log("circleSegment1.mesh: ", circleSegment1.mesh.scale.x)
+
 
 var renderer = new THREE.WebGLRenderer({
     antialias: true,
