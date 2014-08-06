@@ -7,3 +7,4 @@ npm-debug.log
 /node_modules/grunt
 /node_modules/grunt-express
 /node_modules/grunt-browserify
+/node_modules/grunt-contrib-watch
