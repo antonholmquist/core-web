@@ -10,11 +10,24 @@ module.exports = function(grunt) {
           serverreload: true
         }
       }
+    },
+    browserify: {
+      options: {
+        bundleOptions : {
+            debug: false, 
+        }
+      },
+      bundle: {
+        src: 'public_src/javascript/app.js',
+        dest: 'public/javascript/bundle.js'
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-express');
+  grunt.loadNpmTasks('grunt-browserify');
 
   grunt.registerTask('default', ['express:dev', 'express-keepalive']);
+
 
 } 
