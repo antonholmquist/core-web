@@ -69,6 +69,10 @@ function animate() {
   circleSegment2.mesh.rotation.z += -0.007;
   circleSegment3.mesh.rotation.z += -0.002;
 
+  circleSegment1.mesh.rotation.y += -0.01;
+  circleSegment2.mesh.rotation.y += -0.02;
+  circleSegment3.mesh.rotation.y += -0.023;
+
   renderer.render( scene, camera );
   
 }

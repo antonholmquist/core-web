@@ -70,6 +70,10 @@ function animate() {
   circleSegment2.mesh.rotation.z += -0.007;
   circleSegment3.mesh.rotation.z += -0.002;
 
+  circleSegment1.mesh.rotation.y += -0.01;
+  circleSegment2.mesh.rotation.y += -0.02;
+  circleSegment3.mesh.rotation.y += -0.023;
+
   renderer.render( scene, camera );
   
 }
@@ -35964,8 +35968,8 @@ var createMaterial = function() {
     'precision highp float; \
     varying float vAlpha; \
     void main(void) { \
-      gl_FragColor = vec4(1.0, 1.0, 0.2, 1.0); \
-    }'
+      gl_FragColor = vec4(0.5, 1.0, 0.2, 1.0); \
+    }',side: THREE.DoubleSide,
 
   });
 }
