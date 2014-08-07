@@ -38,7 +38,7 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   // Half number of total vertices
-  var verticesPerRound = 14
+  var verticesPerRound = 140
 
   var innerRadius = 0.7
   var outerRadius = 1
@@ -77,15 +77,22 @@ function CircleSegment() {
         i * 2 - 1
       ));
 
+
     }
 
   }
 
   geometry.computeBoundingBox();
+  geometry.computeFaceNormals()
 
-  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+  //var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
-  var mesh = new THREE.Mesh( geometry, createMaterial() );
+  var meshLambertMaterial = new THREE.MeshLambertMaterial({color: 'blue'});
+  meshLambertMaterial.side = THREE.DoubleSide
+
+  //meshLambertMaterial.color = 0xffffff
+
+  var mesh = new THREE.Mesh( geometry, meshLambertMaterial );
 
 
   this.mesh = mesh;

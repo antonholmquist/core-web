@@ -18,6 +18,21 @@ var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHei
 camera.position.z = 1000;
 
 
+// Ambient light
+var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+//scene.add( light );
+
+// Directional light
+var directionalLight = new THREE.DirectionalLight( 0xffffff, 1);
+directionalLight.position.set( 1, 1, 1);
+scene.add( directionalLight );
+
+
+
+var sphere = new THREE.Mesh(  new THREE.SphereGeometry( 30, 10, 10 ), new THREE.MeshLambertMaterial( {color: 0xff0000} ));
+scene.add( sphere );
+
+
 var circleSegmentContainer = new THREE.Object3D()
 circleSegmentContainer.scale.x = 100
 circleSegmentContainer.scale.y = 100
@@ -70,9 +85,9 @@ function animate() {
   circleSegment2.mesh.rotation.z += -0.007;
   circleSegment3.mesh.rotation.z += -0.002;
 
-  circleSegment1.mesh.rotation.y += -0.01;
-  circleSegment2.mesh.rotation.y += -0.02;
-  circleSegment3.mesh.rotation.y += -0.023;
+  circleSegment1.mesh.rotation.y += -0.005;
+  circleSegment2.mesh.rotation.y += -0.01;
+  circleSegment3.mesh.rotation.y += -0.002;
 
   renderer.render( scene, camera );
   
@@ -35980,7 +35995,7 @@ function CircleSegment() {
   var geometry = new THREE.Geometry();
 
   // Half number of total vertices
-  var verticesPerRound = 14
+  var verticesPerRound = 140
 
   var innerRadius = 0.7
   var outerRadius = 1
@@ -36019,15 +36034,22 @@ function CircleSegment() {
         i * 2 - 1
       ));
 
+
     }
 
   }
 
   geometry.computeBoundingBox();
+  geometry.computeFaceNormals()
 
-  var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+  //var material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
-  var mesh = new THREE.Mesh( geometry, createMaterial() );
+  var meshLambertMaterial = new THREE.MeshLambertMaterial({color: 'blue'});
+  meshLambertMaterial.side = THREE.DoubleSide
+
+  //meshLambertMaterial.color = 0xffffff
+
+  var mesh = new THREE.Mesh( geometry, meshLambertMaterial );
 
 
   this.mesh = mesh;
